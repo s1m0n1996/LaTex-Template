@@ -1,0 +1,67 @@
+\chapter{Anleitung}
+
+\subsection{Bilder}
+
+Einbindung eines Bildes:
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{./Bilder-Screenshots/ISO_OSI_Schichtenmodell.pdf}
+		\caption{ISO OSI Schichtenmodell \cite{Deadlyhappen2014}}
+		\label{OsiIsoModell}
+	\end{center}
+\end{figure}
+
+
+\subsection{Listings}
+
+\subsection{Inline}
+
+\begin{listing}[ht]
+	\caption{Python Test Code} 
+	\label{lst:inlineCode}
+	\begin{minted}[gobble=2] % entferne die Einrückung von x
+		{python}
+		print("hello, world")
+	\end{minted}
+\end{listing}
+
+
+\subsection{Datei}
+
+Um eine Datei einzubinden, die auf eine Seite passt:
+\begin{listing}[H]
+	\caption{Aufbau Initialisierungsdatei}
+	\label{lst:aufbauInitialisierungsdatei}
+	\inputminted[
+	]{ini}
+		{Listings/aufbau_initialisierungsdatei.ini}
+\end{listing}
+
+Um eine Datei einzubinden, die mehrere Seiten und somit einen Seitenumbruch benötigt:
+
+\begingroup
+	\captionsetup{type=listing}
+	\inputminted[
+		firstline=0,
+		lastline=200
+	]{python}
+	{Listings/example.py}
+	\captionof{listing}{Beispiel programm \label{lst:exampleCode}}
+\endgroup
+
+
+\subsection{Zitieren}
+
+Ein sehr guter Vergleich was ein Hashwert ist wurde in \cite{SpringerKryptographie:2020} erbracht:
+\begin{quotation}
+	\quotes{
+	Ein geeignetes mentales Modell für Hashfunktionen sind Fingerabdrücke
+	von Personen. Es sollte praktisch unmöglich sein, zwei Personen zu finden, die exakt den
+	gleichen Fingerabdruck haben, und aus einem Fingerabdruck kann man nicht die Person
+	selbst rekonstruieren. Allerdings ist es einfach, einen Fingerabdruck zu bestimmen, wenn
+	eine Person anwesend ist.
+	}
+\end{quotation}
+
+\subsection{Acronyme}
+Abkürzungen: \ac{VM}, \ac{SPS}

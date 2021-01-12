@@ -1,0 +1,64 @@
+% Informationen ------------------------------------------------------------
+% 	Definition von globalen Parametern, die im gesamten Dokument verwendet
+% 	werden können (z.B auf dem Deckblatt etc.).
+% --------------------------------------------------------------------------
+\newcommand{\titel}{LaTeX Vorlage}
+\newcommand{\untertitel}{Untertitel}
+\newcommand{\art}{Art}
+\newcommand{\fachgebiet}{Fachgebiet}
+\newcommand{\autor}{Author}
+\newcommand{\studienbereich}{Studienbereich}
+\newcommand{\erstgutachter}{Erstgutachter}
+\newcommand{\zweitgutachter}{-}
+\newcommand{\matrikelnr}{Matrikelnummer}
+\newcommand{\firma}{Firma}
+\newcommand{\ort}{Ort}
+
+\newcommand{\betreuer}{Betreuer}
+\newcommand{\durchfuehrungsdatum}{Durchführungsdatum}
+\newcommand{\durchfuehrungsort}{Durchführungsort}
+\newcommand{\jahrgang}{Jahrgang}
+\newcommand{\jahr}{Jahr}
+
+% Eigene Befehle
+\newcommand{\todo}[1]{\textbf{\textsc{\textcolor{red}{(TODO: #1)}}}}
+\newcommand\tab[1][20pt]{\hspace*{#1}}
+
+% Autorennamen in small caps
+\newcommand{\AutorZ}[1]{\textsc{#1}}
+\newcommand{\Autor}[1]{\AutorZ{\citeauthor{#1}}}
+
+% Befehle zur semantischen Auszeichnung von Text
+\newcommand{\NeuerBegriff}[1]{\textbf{#1}}
+\newcommand{\Fachbegriff}[1]{\textit{#1}}
+\newcommand{\Prozess}[1]{\textit{#1}}
+\newcommand{\Webservice}[1]{\textit{#1}}
+\newcommand{\Eingabe}[1]{\texttt{#1}}
+\newcommand{\Code}[1]{\texttt{#1}}
+\newcommand{\Datei}[1]{\texttt{#1}}
+\newcommand{\Datentyp}[1]{\textsf{#1}}
+\newcommand{\XMLElement}[1]{\textsf{#1}}
+
+% Abkürzungen
+\newcommand{\vgl}{Vgl.\ }
+\newcommand{\ua}{\mbox{u.\,a.\ }}
+\newcommand{\zB}{\mbox{z.\,B.\ }}
+\newcommand{\bs}{$\backslash$}
+\newcommand{\quotes}[1]{\glqq #1\grqq} % Anführungszeichen
+
+% Tabelle aus .csv datei erstellen
+% aufruf: \perstable{anzahlSpalten}{csvDateipfad}
+%die tateien müssen mit komma getrennt sein nicht mit ;
+
+% https://texblog.org/2012/05/30/generate-latex-tables-from-csv-files-excel/
+\newcommand{\perstable}[2]{%
+	\begin{tabularx}{15cm}{|*{#1}{X|}}
+		\hline
+		\csvreader[late after line=\\\hline,late after last line=\\\hline,
+		no head,column count=#1]
+		{#2}
+		{}
+		{\csvlinetotablerow}
+	\end{tabularx}
+}
+

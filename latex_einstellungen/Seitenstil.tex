@@ -1,0 +1,69 @@
+% Zeilenabstand ------------------------------------------------------------
+\onehalfspacing
+
+
+% Seitenränder -------------------------------------------------------------
+% bindingoffset bei doppelseitigen Druck kann eine Bindekorrektur definiert werden
+%\geometry{paper=a4paper,left=35mm,right=35mm,top=30mm,bottom=50mm, bindingoffset=2mm}
+
+% Kopf- und Fußzeilen ------------------------------------------------------
+\pagestyle{scrheadings}
+
+% Kopf- und Fußzeile auch auf Kapitelanfangsseiten -------------------------
+\renewcommand*{\chapterpagestyle}{scrheadings}
+
+% Schriftform der Kopfzeile ------------------------------------------------
+\renewcommand{\headfont}{\normalfont}
+
+% Kopfzeile ----------------------------------------------------------------
+\ihead{\large{\textsc{\titel}}\\	\small{\untertitel} \\[2ex] \textit{\headmark}}
+\chead{}
+\ohead{\includegraphics[height=1.7cm]{PHWTLogo.jpg}}
+\setlength{\headheight}{21mm} % Höhe der Kopfzeile
+%\setheadwidth[0pt]{textwithmarginpar} % Kopfzeile über den Text hinaus verbreitern
+\KOMAoptions{headsepline=0.4pt} % dicke der Trennlinie unter Kopfzeile
+
+% Fußzeile -----------------------------------------------------------------
+\ifoot{\copyright\ \autor}
+\cfoot{}
+\ofoot{\pagemark}
+\setlength{\footheight}{10mm} % Höhe der Fußzeile
+%\setfootwidth[0pt]{textwithmarginpar} % Fußzeile über den Text hinaus verbreitern
+\KOMAoptions{footsepline=0.4pt} % dicke der Trennlinie unter Fußzeile
+
+
+% erzeugt ein wenig mehr Platz hinter einem Punkt --------------------------
+%\frenchspacing 
+
+% Schusterjungen und Hurenkinder vermeiden
+\clubpenalty = 10000
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+
+
+% Quellcode-Ausgabe formatieren --------------------------------------------
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, breaklines=true}
+\lstset{emph={square}, emphstyle=\color{red}, emph={[2]root,base}, emphstyle={[2]\color{blue}}}
+
+% Fußnoten fortlaufend durchnummerieren ------------------------------------
+\counterwithout{footnote}{chapter}
+
+
+% Code-Listings
+\lstset{
+language=C, % Programmiersprache
+showstringspaces=false, % In Strings keine Backspace zeichen
+basicstyle=\ttfamily\footnotesize, % Schriftgröße small
+breakatwhitespace=true,breaklines=true,%
+tabsize=4, % Tabulatorbreite
+commentstyle=\color{red},% Kommentarfarbe
+keywordstyle=\color{blue}\textbf, % Keywörterfabe
+%backgroundcolor=\color{codebackround}, % Hintergrundarbe
+keywordstyle=\color{blue}\textbf, % Stile der eig. Keywörter (gleicher stile, wie bei Standart-c keywords
+morekeywords={u_int8, u_int16, u_int32} % eigene Keywörter
+showtabs=true, % Tabuloren anzeigen (disabled)
+%numbers=left, % Zeilennummerierung auf der linken Seite (disabled)
+%numberstyle=\tiny, % Zeilennummerierung kleine Schriftgröße (disabled)
+%numbersep=-7pt, % vertikale Position der Nummerierung
+%tab=\rightarrowfill
+}

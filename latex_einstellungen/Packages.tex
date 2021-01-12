@@ -1,0 +1,334 @@
+% ===========================================================================
+% Masterlayout
+% ===========================================================================
+% 	https://www.teuderun.de/latex/layout/satzspiegel/
+\documentclass[
+	12pt,						% Schriftgröße
+	DIV=calc,					% DIV gibt die Satzspiegelgröße  an DIV=10 bei 11pt DIV=calc ist automatisch
+	german,						% für Umlaute, Silbentrennung etc.
+	paper=a4,					% Papierformat
+	oneside,					% oneside= einseitiges Dokument, twoside = zweiseitiges Dokument
+	titlepage,					% es wird eine Titelseite verwendet
+	parskip=half,				% Abstand zwischen Absätzen (halbe Zeile)
+	headings=normal,			% Größe der Überschriften verkleinern
+	%lists=totoc,				% Verzeichnisse im Inhaltsverzeichnis aufführen
+	listof=totoc,				% Verzeichnisse im Inhaltsverzeichnis aufführen
+	bibliography=totoc,			% Literaturverzeichnis im Inhaltsverzeichnis aufführen
+	%idx=totoc,					% Index im Inhaltsverzeichnis aufführen
+	%captions=tableabove,		% Beschriftung von Tabellen oberhalb ausgeben
+	headheight=30pt,
+	final						% Status des Dokuments (final/draft)
+]{scrreprt}
+
+\pdfminorversion=7 	% create pdf version 1.7
+% ===========================================================================
+% Masterlayout ende
+% ===========================================================================
+
+
+% ===========================================================================
+% Seitenlayout
+% ===========================================================================
+% Anpassung des Seitenlayouts ----------------------------------------------
+% 	siehe Seitenstil.tex
+% --------------------------------------------------------------------------
+\usepackage[
+automark,			% Kapitelangaben in Kopfzeile automatisch erstellen
+headsepline,		% Trennlinie unter Kopfzeile
+ilines				% Trennlinie linksbündig ausrichten
+]{scrlayer-scrpage}
+% ===========================================================================
+% Seitenlayout ende
+% ===========================================================================
+
+
+% ===========================================================================
+% Einstellungen Zeilenumbrüche
+% ===========================================================================
+% 	Passe schriftbreite 2% an, um zeilenumbrüche besser zu trennen
+\usepackage{microtype}
+% fügt so viel Leerraum zwischen den Wörtern ein wie notwendig ist, dass die Zeilenumbrücke sauber sind.
+% das kann zu underfull-box arnungen führen
+\emergencystretch=1em
+% ===========================================================================
+% Einstellungen Zeilenumbrüche ende
+% ===========================================================================
+
+
+% Anpassung an Landessprache -----------------------------------------------
+% 	Verwendet globale Option german siehe \documentclass
+% --------------------------------------------------------------------------
+\usepackage[ngerman]{babel}
+
+
+% Umlaute ------------------------------------------------------------------
+% 		Umlaute/Sonderzeichen wie äöüß direkt im Quelltext verwenden (CodePage).
+%		Erlaubt automatische Trennung von Worten mit Umlauten.
+% --------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae} % "schöneres" ä
+\usepackage{textcomp} % Euro-Zeichen etc.
+
+
+% ===========================================================================
+% Grafiken
+% ===========================================================================
+% Grafiken -----------------------------------------------------------------
+% 		Einbinden von Grafiken [draft oder final]
+% 		Option [draft] bindet Bilder nicht ein - auch globale Option
+% --------------------------------------------------------------------------
+\usepackage[dvips,final]{graphicx}
+\graphicspath{{Bilder-Screenshots/}} % Dort liegen die Bilder des Dokuments
+
+% binde vectorgrafiken als pdf ein
+\usepackage{pdfpages}
+
+% Zum Umfließen von Bildern -------------------------------------------------
+\usepackage{floatflt}
+
+% Bilder werden nun wir im Quelltext unter der passenden section angezeigt --
+\usepackage[section]{placeins}
+% ===========================================================================
+% Grafiken ende
+% ===========================================================================
+
+
+% Befehle aus AMSTeX für mathematische Symbole z.B. \boldsymbol \mathbb ----
+\usepackage{amsmath,amsfonts,units}
+
+% Einfache Definition der Zeilenabstände und Seitenränder etc. -------------
+\usepackage{setspace}
+\usepackage{geometry}
+
+
+% Symbolverzeichnis --------------------------------------------------------
+% 	Symbolverzeichnisse bequem erstellen, beruht auf MakeIndex.
+% 		makeindex.exe %Name%.nlo -s nomencl.ist -o %Name%.nls
+% 		erzeugt dann das Verzeichnis. Dieser Befehl kann z.B. im TeXnicCenter
+%		als Postprozessor eingetragen werden, damit er nicht ständig manuell
+%		ausgeführt werden muss.
+%		Die Definitionen sind ausgegliedert in die Datei Abkuerzungen.tex.
+% --------------------------------------------------------------------------
+\usepackage[intoc]{nomencl}
+  \let\abbrev\nomenclature
+  \renewcommand{\nomname}{Abkürzungsverzeichnis}
+  \setlength{\nomlabelwidth}{.25\hsize}
+  \renewcommand{\nomlabel}[1]{#1 \dotfill}
+  \setlength{\nomitemsep}{-\parsep}
+
+
+% ===========================================================================
+% Programmcode Listings
+% ===========================================================================
+\usepackage{listings}
+
+% see https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+% to use:
+%
+% ==BEISPIEL ANFANG==
+%\begin{listing}[h]
+%	\caption{Python Test Code} 
+%	\label{lst:the-code2}
+%	\begin{minted}[gobble=2] % entferne die Einrückung von x
+%		{python}
+%		print("hello, world")
+%	\end{minted}
+%\end{listing}
+% --------------------------------------------------------------------------
+% um Dateien zu importieren:
+%\begin{listing}
+%	\caption{Aufbau Initialisierungsdatei}
+%	\label{lst:aufbauInitialisierungsdatei}
+%	\inputminted[
+%		firstline=191,
+%		lastline=239,
+%	]{python}
+%		{Listings/mail.py}
+%\end{listing}
+% um lange Dateien zu importieren (mit Seitenumbruch)
+%\begingroup
+%\captionsetup{type=listing}
+%\inputminted[
+%	firstline=191,
+%	lastline=239
+%]{python}
+%{Listings/mail.py}
+%\captionof{listing}{Facade\label{lst:mailFacade}}
+%\endgroup
+% ==BEISPIEL ENDE==
+\usepackage[
+	cache=false,	% cache kommt oft zu fehlern
+	chapter			% Listing Nummern Beginnen mit Kapitelnummern
+	]{minted}
+	
+% mögliche styles mit "$ pygmentize -L styles" in Kommandozeile
+\usemintedstyle{default}
+
+\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
+
+\setminted{
+	breaklines, 			% Breche zu lamge Zeilen um
+	breakafter=d,			% Breche zu lange zeilen um
+	frame=single,			% Kasten um den Code optionen: (none | leftline | topline | bottomline | lines | single)
+	framesep=2mm,			% Abstand zwischen oberer und unterer Trennlinie
+	baselinestretch=1.2,	% Zeilenabstand
+	tabsize=4, 				% leerzeichen für Tab.
+	bgcolor=mintedbackground,		% Hintergrundfarbe
+	fontsize=\footnotesize,	% Schriftgröße
+	linenos=true,			% Aktiviere Zeilennummern
+}
+
+% mache autoref auch für mind verfügbar
+\providecommand*{\listingautorefname}{Listing}
+
+% https://github.com/gpoore/minted/issues/22
+\usepackage{scrhack}
+
+% requirements for minted
+\usepackage{keyval}
+\usepackage{kvoptions}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{upquote}
+\usepackage{float}
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{ifplatform}
+\usepackage{pdftexcmds}
+\usepackage{etoolbox}
+\usepackage{xstring}
+\usepackage{xcolor}
+\usepackage{lineno}
+\usepackage{framed}
+\usepackage{shellesc}
+
+% ===========================================================================
+% Programmcode Listings
+% ===========================================================================
+
+% Lange URLs umbrechen etc. -------------------------------------------------
+\usepackage{url}
+
+% Wichtig für korrekte Zitierweise ------------------------------------------
+%\usepackage[square]{natbib}
+% Quellenangaben in eckige Klammern fassen ----------------------------------
+%\bibpunct{[}{]}{;}{a}{}{,~}
+
+
+% ===========================================================================
+% BiBteX
+% ===========================================================================
+% 	um ein automatisch generiertes Literaturverzeichnis zu erstelen
+% 	https://golatex.de/wichtige-hinweise-erstellung-von-literaturverzeichnissen-t11964.html
+\usepackage[
+	style=alphabetic,
+	backend=biber
+	]{biblatex}
+\usepackage{csquotes}
+
+% Wertebereich von 0 - 10000. Entscheidungskriterium wann links umgebrochen werden.
+% value = 0 (Default) -> es werden alle umbrüche gesperrt
+% value > 0 -> es wird nach ales Zahlen/Nummern umgebrochen
+% value = 9000 -> es wird nach silbentrennung umgebrochen
+% https://texwelt.de/fragen/7008/zeilenumbruche-in-bibliografielinks
+\setcounter{biburllcpenalty}{9000}% Kleinbuchstaben
+\setcounter{biburlucpenalty}{9000}% Großbuchstaben
+
+% ===========================================================================
+% BiBteX ende
+% ===========================================================================
+
+% Abbildungsverzeichnis
+\usepackage{acronym}
+
+% Für Index-Ausgabe; \printindex -------------------------------------------
+\usepackage{makeidx}
+
+% ===========================================================================
+% PDF-Optionen
+% ===========================================================================
+% inhaltsverzeichnis konfigurieren
+\usepackage[
+	bookmarks,
+	bookmarksopen=true,
+	pdftitle={\titel},
+	pdfauthor={\autor},
+	pdfcreator={\autor},
+	pdfsubject={\titel},
+	pdfkeywords={\titel},
+	colorlinks=true,
+	linkcolor=black, % einfache interne Verknüpfungen
+	anchorcolor=black,% Ankertext
+	citecolor=blue, % Verweise auf Literaturverzeichniseinträge im Text
+	filecolor=magenta, % Verknüpfungen, die lokale Dateien öffnen
+	menucolor=red, % Acrobat-Menüpunkte
+	urlcolor=cyan, 
+	% für die Druckversion können die Farben ausgeschaltet werden:
+	%linkcolor=black, % einfache interne Verknüpfungen
+	%anchorcolor=black,% Ankertext
+	%citecolor=black, % Verweise auf Literaturverzeichniseinträge im Text
+	%filecolor=black, % Verknüpfungen, die lokale Dateien öffnen
+	%menucolor=black, % Acrobat-Menüpunkte
+	%urlcolor=black, 
+	%backref,
+	%pagebackref,
+	plainpages=false,% zur korrekten Erstellung der Bookmarks
+	pdfpagelabels,% zur korrekten Erstellung der Bookmarks
+	hypertexnames=false,% zur korrekten Erstellung der Bookmarks
+	%linktocpage % Seitenzahlen anstatt Text im Inhaltsverzeichnis verlinken
+]{hyperref}
+% ===========================================================================
+% PDF-Optionen ende
+% ===========================================================================
+
+% Zum besseren referenzieren auf----------------- ---------------------------
+\usepackage[german]{varioref}
+\def\myref#1{\autoref{#1}\vpageref[]{#1}}
+
+
+% Zum fortlaufenden Durchnummerieren der Fußnoten ---------------------------
+\usepackage{chngcntr}
+
+
+% für lange Tabellen
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{lscape}
+
+% Spaltendefinition rechtsbündig mit definierter Breite ---------------------
+\newcolumntype{d}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
+
+% Formatierung von Listen ändern
+\usepackage{paralist}
+% Standardeinstellungen:
+%\setdefaultleftmargin{2.5em}{2.2em}{1.87em}{1.7em}{1em}{1em}
+
+
+% ===========================================================================
+% Diagrammee
+% ===========================================================================
+% Um diagramme zu drucken ---------------------------------------------------
+% https://github.com/MartinThoma/LaTeX-examples/blob/master/tikz/csv-line-plot-two-axes/csv-line-plot-two-axes.tex
+% http://pgfplots.sourceforge.net/gallery.html
+% http://pgfplots.sourceforge.net/
+\usepackage{pgfplots}
+\pgfplotsset{
+	width=1.0\textwidth,
+	height=1.0\textwidth,
+	axis lines=center,
+	}
+\pgfplotsset{compat=1.11}
+
+
+\usepackage{tikz}
+
+% Package fuer CSV-Dateien --------------------------------------------------
+% https://texblog.org/2012/05/30/generate-latex-tables-from-csv-files-excel/
+\usepackage{csvsimple} 
+\usepackage{tabularx} %für X-Spalten und tabularx-Umgebung
+% ===========================================================================
+% Diagramme ende
+% ===========================================================================
+

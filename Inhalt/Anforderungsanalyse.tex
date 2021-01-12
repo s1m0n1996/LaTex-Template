@@ -1,0 +1,6 @@
+Die Maschinendaten sollen vom Kundennetz in das A+F eigene Hausnetz transportiert werden. Dabei sind die Anforderungen, dass die Daten verschlüsselt über eine sichere Verbindung übertragen werden müssen. 
+Dabei wird Augenmerk auf 2 Ansätze gelegt.
+
+Es soll im zeitlichen Intervall von der Maschine eine E-Mail verschickt werden, welche einen kurzen Statusbericht enthält. Dieser wird automatisiert an definierte E-Mail Adressen verschickt werden. Es muss noch Rücksprache mit verschiedenen Kunden gehalten werden wie die Netze aufgebaut sind und ob man vom Kunden den Mailserver nutzen kann oder ob ein eigener Mailserver auf dem \ac{IPC} aufgesetzt werden muss.
+
+Die Rohdaten der Maschine könnten per SFTP auf den hauseigenen A+F Server übertragen werden. Hier wird nicht auf die Mail gesetzt, da diese Daten sehr groß werden können. Die Rohdaten beinhalten einen SQL Export der Datenbank und in neueren Anlagen Videos zu aufgetretenen Fehlern. Bei diesem Verfahren muss bei A+F idealerweise noch eine DMZ eingerichtet werden, wo die Daten automatisiert auf einen SMTP Server hochgeladen werden können.

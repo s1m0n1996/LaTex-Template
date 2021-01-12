@@ -1,0 +1,11 @@
+[Unit]
+Description=Meine Unit
+After=Bereits gestartete Dienste
+
+[Service]
+Type=simple
+ExecStart=/PFAD/ZUM/BEFEHL/befehl
+
+[Install]
+# Standard für ein Mehrbenutzersystem
+WantedBy=multi-user.target 

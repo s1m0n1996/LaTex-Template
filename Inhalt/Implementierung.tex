@@ -1,0 +1,65 @@
+\chapter{Implementierung}
+
+Die Klasse \textbf{Mail} wurde implementiert. Diese Klasse kann mithilfe eines \ac{SMTP} Servers E-Mails versenden. Damit die Klasse universell einsetzbar ist, sind folgende Variablen einzustellen.
+
+\begin{addmargin}[20pt]{0pt}
+	
+	\textbf{host:} \textit{\Datentyp{STR}}\\
+	\tab Hostname des SMTP Servers
+	
+	\textbf{port:} \textit{\Datentyp{INT}, Optional Default: 587}\\
+	\tab Port mit welchem sich auf den SMTP Server verbunden wird
+	
+	\textbf{mail\_address:} \textit{\Datentyp{STR}}\\
+	\tab E-Mail von welcher versendet wird.
+	
+	\textbf{timeout:} \textit{\Datentyp{INT}, Default: 60}\\
+	\tab Timeout in [s]. Solange wird versucht eine Verbindung zum SMTP-Server aufzubauen.
+	
+	\textbf{username:} \textit{\Datentyp{STR}}\\
+	\tab Benutzername zur Authentifizierung.
+	
+	\textbf{passwd:} \textit{\Datentyp{INT}}\\
+	\tab Passwort zur Authentifizierung.
+	
+	\textbf{encryption:} \textit{\Datentyp{enum Encryption}, Default: NONE}\\
+	\tab Verschlüsselungstyp. Auswählbar sind NONE, SSL, TLS.
+	
+	\textbf{target\_addr:} \textit{\Datentyp{List<STR>}}\\
+	\tab Eine Liste der Adressen, an welche die E-Mail gesendet werden soll.
+	
+	\textbf{subject:} \textit{\Datentyp{STR}}\\
+	\tab Betreff der E-Mail
+	
+	\textbf{content:} \textit{\Datentyp{STR}}\\
+	\tab Nachricht der E-Mail
+	
+	\textbf{attachments:} \textit{\Datentyp{List<ByteArray>}, Default: None}\\
+	\tab Liste der Anhänge, die versendet werden sollen.
+	
+	\textbf{max\_size:} \textit{\Datentyp{INT}, Default: 5}\\
+	\tab Maximale Größe der E-Mail in MiB
+
+\end{addmargin}
+
+Da die Verbindungsparameter wie z.~B. host, port, login,~... selten verändert werden, werden diese in einer SQL-Datenbank gespeichert. Um die Mail Klasse verwenden zu können, muss dementsprechend auch die Klasse MySqlConnection verwendet werden. Um bei jedem Senden einer E-Mail nicht immer Beide Klassen aufrufen zu müssen, wird das Design Pattern \quotes{facade} verwendet. Es muss jetzt nur noch diese Facade mit den Parametern target\_addr, subject, content und attachments aufgerufen werden.
+
+\begingroup
+\captionsetup{type=listing}
+\inputminted[
+	firstline=191,
+	lastline=239
+]{python}
+{Listings/mail.py}
+\captionof{listing}{Facade\label{lst:mailFacade}}
+\endgroup
+
+
+\section{Ausführung}
+
+Das Programm soll automatisiert zu bestimmten Zeitpunkten einen Report senden. Unter Linux wird hierfür ein eigener systemd Service angelegt. Über systemd ist es bereits möglich das Programm zeitgesteuert auszuführen. Dabei ist zu unterscheiden, ob es im Intervall (z.~B. alle 10s) oder zu bestimmten Zeitpunkten (z.~B. Jeden Freitag um 12:00) aufgerufen wird. Die Funktionalität, das Programm zu bestimmten Zeitpunkten auszuführen, hört sich genau nach der Funktion an die benötigt wird. Allerdings ist der entscheidenden Nachteil, dass der Zeitpunkt fest in der jeweiligen .service Datei konfiguriert ist und diese bei Änderung mit daemon-reload von Linux System neu eingelesen werden muss. Da die Anforderung ist, den Zeitpunkt des Versendens in der Datenbank zu konfigurieren, ist das also ein k.O. Kriterium.
+
+Es bleibt also die Möglichkeit der Ausführung im Intervall. Dabei wird im Grunde eine While True schleife nachgestellt, die allerdings nicht permanent CPU Ressourcen benötigt, sondern sich zwischen den Ausführungen für eine gewisse Zeit schlafen legt.
+
+Innerhalb des Programms muss jetzt abgefragt werden ob ein Report gesendet werden soll, das heißt, ob ein Report in der Datenbank angelegt ist und ob die aktuelle Zeit im Bereich größer gleich Sendezeit und kleiner gleich Sendezeit + Intervall liegt. Wenn kein Report gesendet werden soll, wird das Programm wieder beendet und hat nichts getan. Wenn ein report gesendet werden soll, müssen weitere Daten aus der Datenbank geladen werden. Anschließend wird der Report erzeugt und gesendet.
+\todo{Ablaufdiagramm einfügen}

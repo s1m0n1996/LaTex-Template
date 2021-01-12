@@ -1,0 +1,3 @@
+warum wurde eine while true schleife verwendet und nicht der systemd timer?
+Ablaufdiagramme der Senderoutinen
+- Aufbau Email -> Eigentlich nur Text objekt

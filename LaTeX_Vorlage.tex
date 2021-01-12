@@ -1,0 +1,97 @@
+%Obsolete Option in koma-script
+%		halfparskip					parskip=half
+%		normalheadings			headings=normal
+%		liststotoc						lists=totoc
+%		bibstotoc						bibliography=totoc
+%		idxtotoc						idx=totoc
+%		tablecaptionabove		captions=tableabove
+
+\input{latex_einstellungen/variablen}
+
+% lade pakete
+\input{latex_einstellungen/Packages}
+
+% definierter seitenstil
+\input{latex_einstellungen/Seitenstil}
+
+% worttrennung für unbekannte wörter
+\input{latex_einstellungen/trennung}
+
+% Unterscheidug zwischen PDF- und DVI/PS-Ausgabe
+\usepackage{ifpdf} 
+\ifpdf
+     \DeclareGraphicsExtensions{.jpg,.png}
+     \hypersetup{pdftitle    = {\titel},
+                 pdfauthor   = {\autor},
+                }
+     \pdfinfo{/Title   (\titel)
+              /Author   (\autor)
+             }
+\else
+     \usepackage[dvips]{graphicx}
+     \usepackage[dvips,colorlinks=false]{hyperref}
+     \hypersetup{pdftitle    = {\titel},
+                 pdfauthor   = {\autor},
+                }
+\fi
+% Ende der Unterscheidung
+\usepackage{amsmath,amssymb,units}
+\usepackage{multicol,wrapfig,caption}
+\captionsetup{format=plain,justification=centering,labelsep=newline,singlelinecheck=false,labelfont=bf,font=small}
+\usepackage{mathptmx,charter,helvet,courier}
+
+% literaturverzeichniss hinzufügen
+\addbibresource{Inhalt/literaturverzeichnis.bib}
+\begin{document}
+\setlength{\parindent}{0pt}
+\pagenumbering{Roman}
+\include{latex_einstellungen/Deckblatt}
+\cleardoublepage
+
+\include{./Inhalt/Anhang/Sperrvermerk}
+\cleardoublepage
+\include{./Inhalt/Anhang/EidesstattlicheErklaerung}
+\cleardoublepage
+
+\include{./Inhalt/Vorwort}
+
+% inhsltsverzeichniss erstellen
+\cleardoublepage
+\tableofcontents
+
+\listoffigures				% Abbildungsverzeichnis
+\renewcommand\listoflistingscaption{Verzeichnis der Programmausschnitte}
+\listoflistings
+\include{./Inhalt/Abkuerzungsverzeichnis}
+%\listoftables				% Tabellenverzeichnis
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+%###############################################################
+%-------------begin include-------------------------------------
+%###############################################################
+
+\include{./Inhalt/Anleitung}
+\include{./Inhalt/Einleitung}
+\include{./Inhalt/StandDerTechnik}
+\include{./Inhalt/TheoretischeGrundlagen}
+\include{./Inhalt/Systemanalyse}
+
+\include{./Inhalt/Thema}
+\include{./Inhalt/Zusammenfassung}
+\include{./Inhalt/Ausblick}
+
+
+\printbibliography			% Literaturverzeichnis
+\newpage
+
+\appendix % Nummerierung ändern
+\pagenumbering{alph}
+\include{./Inhalt/Anhang/Anhang}
+
+%###############################################################
+%-------------end include---------------------------------------
+%###############################################################
+
+\end{document} 
