@@ -88,6 +88,11 @@ ilines				% Trennlinie linksbündig ausrichten
 % Zum Umfließen von Bildern -------------------------------------------------
 \usepackage{floatflt}
 
+% zum darstellen mehrerer Bilder nebeneinander
+\usepackage{subfig}
+% Wird subfig benutzt, passen die referenz-Seiten nicht. Die Option behebt den Fehler.
+\captionsetup[subfigure]{position=b}
+
 % Bilder werden nun wir im Quelltext unter der passenden section angezeigt --
 \usepackage[section]{placeins}
 % ===========================================================================
