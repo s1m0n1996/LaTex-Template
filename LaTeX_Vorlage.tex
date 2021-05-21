@@ -17,6 +17,9 @@
 % worttrennung für unbekannte wörter
 \input{latex_einstellungen/trennung}
 
+% abkürzungsverzeichniss
+\input{./Inhalt/Abkuerzungsverzeichnis}
+
 % Unterscheidug zwischen PDF- und DVI/PS-Ausgabe
 \usepackage{ifpdf} 
 \ifpdf
@@ -38,6 +41,7 @@
 
 % literaturverzeichniss hinzufügen
 \addbibresource{Inhalt/literaturverzeichnis.bib}
+\makeindex
 \begin{document}
 \setlength{\parindent}{0pt}
 \pagenumbering{Roman}
@@ -59,7 +63,9 @@
 \listoffigures				% Abbildungsverzeichnis
 \renewcommand\listoflistingscaption{Verzeichnis der Programmausschnitte}
 \listoflistings
-\include{./Inhalt/Abkuerzungsverzeichnis}
+% abkürzungsverzeichnis
+% https://github.com/cgnieder/acro/blob/master/doc/acro-manual.pdf
+\printacronyms
 %\listoftables				% Tabellenverzeichnis
 \cleardoublepage
 

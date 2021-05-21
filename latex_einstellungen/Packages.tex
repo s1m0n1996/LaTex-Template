@@ -246,7 +246,14 @@ ilines				% Trennlinie linksbündig ausrichten
 % ===========================================================================
 
 % Abbildungsverzeichnis
-\usepackage{acronym}
+% https://github.com/cgnieder/acro/blob/master/doc/acro-manual.pdf
+\usepackage[version=3]{acro} %list of abbreviations
+\acsetup{
+	make-links = true,				% erstelle link
+	first-style = long-short,		% darstellung der ersten benutzung
+	list/display = used,			% stelle nur benutzte dar
+	pages/display = all,			% zeige Seitenzahlen im abbildungsverzeichniss an
+}
 
 % Für Index-Ausgabe; \printindex -------------------------------------------
 \usepackage{makeidx}
