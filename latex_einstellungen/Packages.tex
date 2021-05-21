@@ -351,6 +351,11 @@ ilines				% Trennlinie linksbündig ausrichten
 	textsize=tiny
 ]{todonotes}
 
+%\usepackage{amsmath,amssymb,units}
+\usepackage{multicol,wrapfig,caption}
+\captionsetup{format=plain,justification=centering,labelsep=newline,singlelinecheck=false,labelfont=bf,font=small}
+\usepackage{mathptmx,charter,helvet,courier}
+
 \newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
 \newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
 \newcommandx{\info}[2][1=]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{#2}}
