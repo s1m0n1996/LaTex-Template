@@ -243,16 +243,6 @@ ilines				% Trennlinie linksbündig ausrichten
 % BiBteX ende
 % ===========================================================================
 
-% Abbildungsverzeichnis
-% https://github.com/cgnieder/acro/blob/master/doc/acro-manual.pdf
-\usepackage[version=3]{acro} %list of abbreviations
-\acsetup{
-	make-links = true,				% erstelle link
-	first-style = long-short,		% darstellung der ersten benutzung
-	list/display = used,			% stelle nur benutzte dar
-	pages/display = all,			% zeige Seitenzahlen im abbildungsverzeichniss an
-}
-
 % Für Index-Ausgabe; \printindex -------------------------------------------
 \usepackage{makeidx}
 
@@ -292,6 +282,25 @@ ilines				% Trennlinie linksbündig ausrichten
 % ===========================================================================
 % PDF-Optionen ende
 % ===========================================================================
+
+% Abbildungsverzeichnis
+%https://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossariesbegin.pdf
+\usepackage[
+	toc,
+	acronym,
+	nopostdot=true,
+	style=long4col, % [indexgroup, long4col, tree, altlist, mcolindex]
+%	nonumberlist=true, % deaktiviere rückreferenz
+]{glossaries}
+
+\loadglsentries{./Inhalt/Abkuerzungsverzeichnis}
+\setacronymstyle{long-sc-short}
+\makenoidxglossaries
+
+\renewcommand*{\acronymname}{Abkürzungsverzeichnis}
+
+\newcommand{\ac}[1]{\gls{#1}}
+\newcommand{\acp}[1]{\glspl{#1}}
 
 % Zum besseren referenzieren auf----------------- ---------------------------
 \usepackage[german]{varioref}

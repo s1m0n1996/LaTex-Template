@@ -17,9 +17,6 @@
 % worttrennung für unbekannte wörter
 \input{latex_einstellungen/trennung}
 
-% abkürzungsverzeichniss
-\input{./Inhalt/Abkuerzungsverzeichnis}
-
 % Unterscheidug zwischen PDF- und DVI/PS-Ausgabe
 \usepackage{ifpdf} 
 \ifpdf
@@ -63,8 +60,7 @@
 \renewcommand\listoflistingscaption{Verzeichnis der Programmausschnitte}
 \listoflistings
 % abkürzungsverzeichnis
-% https://github.com/cgnieder/acro/blob/master/doc/acro-manual.pdf
-\printacronyms
+\printnoidxglossaries
 %\listoftables				% Tabellenverzeichnis
 \cleardoublepage
 
