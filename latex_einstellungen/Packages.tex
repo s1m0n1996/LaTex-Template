@@ -299,8 +299,13 @@ ilines				% Trennlinie linksbündig ausrichten
 
 \renewcommand*{\acronymname}{Abkürzungsverzeichnis}
 
-\newcommand{\ac}[1]{\gls{#1}}
-\newcommand{\acp}[1]{\glspl{#1}}
+\newcommand{\ac}[1]{\gls{#1}} % To print the term, lowercase. For example, \gls{maths} prints mathematics when used.
+\newcommand{\Ac}[1]{\Gls{#1}} % The same as \gls but the first letter will be printed in uppercase. Example: \Gls{maths} prints Mathematics
+\newcommand{\acp}[1]{\glspl{#1}} % The same as \gls but the term is put in its plural form. For instance, \glspl{formula} will write formulas in your final document.
+\newcommand{\Acp}[1]{\Glspl{#1}} % The same as \Gls but the term is put in its plural form. For example, \Glspl{formula} renders as Formulas.
+\newcommand{\acl}[1]{\acrlong{#1}} % Displays the phrase which the acronyms stands for. Put the label of the acronym inside the braces. In the example, \acrlong{gcd} prints Greatest Common Divisor.
+\newcommand{\acs}[1]{\acrshort{#1}} % Prints the acronym whose label is passed as parameter. For instance, \acrshort{gcd} renders as GCD.
+\newcommand{\acf}[1]{\acrfull{#1}} % Prints both, the acronym and its definition. In the example the output of \acrfull{lcm} is Least Common Multiple (LCM).
 
 % Zum besseren referenzieren auf----------------- ---------------------------
 \usepackage[german]{varioref}
