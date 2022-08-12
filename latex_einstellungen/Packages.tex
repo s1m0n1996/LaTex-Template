@@ -114,12 +114,12 @@ ilines				% Trennlinie linksbündig ausrichten
 %		ausgeführt werden muss.
 %		Die Definitionen sind ausgegliedert in die Datei Abkuerzungen.tex.
 % --------------------------------------------------------------------------
-\usepackage[intoc]{nomencl}
-  \let\abbrev\nomenclature
-  \renewcommand{\nomname}{Abkürzungsverzeichnis}
-  \setlength{\nomlabelwidth}{.25\hsize}
-  \renewcommand{\nomlabel}[1]{#1 \dotfill}
-  \setlength{\nomitemsep}{-\parsep}
+%\usepackage[intoc]{nomencl}
+%  \let\abbrev\nomenclature
+%  \renewcommand{\nomname}{Abkürzungsverzeichnis}
+%  \setlength{\nomlabelwidth}{.25\hsize}
+%  \renewcommand{\nomlabel}[1]{#1 \dotfill}
+%  \setlength{\nomitemsep}{-\parsep}
 
 
 % ===========================================================================
@@ -289,8 +289,9 @@ ilines				% Trennlinie linksbündig ausrichten
 	toc,
 	acronym,
 	nopostdot=true,
+	translate=babel,
 	style=long4col, % [indexgroup, long4col, tree, altlist, mcolindex]
-%	nonumberlist=true, % deaktiviere rückreferenz
+	nonumberlist=true, % deaktiviere rückreferenz
 ]{glossaries}
 
 \loadglsentries{./Inhalt/Abkuerzungsverzeichnis}
