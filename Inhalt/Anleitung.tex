@@ -87,3 +87,35 @@ Abkürzungen: \ac{VM}, \ac{SPS}
 \lipsum[11]\todo{This really needs to be improved!\newline\newline What was I thinking?!}
 \lipsum[11]
 
+
+\section{CSV-Dateien - Diagramme}
+
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+		grid,
+		axis x line=bottom,axis y line=left,
+%		xmode=log,	% Skalierung X-Achse Logarithmisch
+%		ymode=log,	% Skalierung Y-Achse Logarithmisch
+		ylabel style={align=center},
+		xlabel={Zeit [ms]},
+		ylabel={Ankerstrom [mA]},
+		width=0.95\textwidth,
+		height=0.5\textheight,
+		ticklabel style={% gilt für x und y
+			/pgf/number format/.cd,
+			use comma,% Komma als Dezimaltrenner
+            1000 sep = {}% keine Tausendertrennung
+			/tikz/.cd,
+		},
+		]
+		\addplot table [mark=none, x={Zeit [s]}, y={Ankerstrom [A]}, col sep=comma]{./csv/SprungantwortRegelungSimulation.csv};
+		\addplot table [mark=none, x={time [s]}, y={current [A]}, col sep=comma]{./csv/LaborStromAcc2000.csv};
+		\legend{Simulation, Labormesswerte }
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Vergleich Sprungantwort Ankerstrom mit aktiver Regelung}
+	\label{fig:LaborSprungAnkerstromRegelung}
+\end{figure}
