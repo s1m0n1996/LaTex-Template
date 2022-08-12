@@ -17,24 +17,11 @@
 % worttrennung für unbekannte wörter
 \input{latex_einstellungen/trennung}
 
-% Unterscheidug zwischen PDF- und DVI/PS-Ausgabe
-\usepackage{ifpdf} 
-\ifpdf
-     \DeclareGraphicsExtensions{.jpg,.png}
-     \hypersetup{pdftitle    = {\titel},
-                 pdfauthor   = {\autor},
-                }
-     \pdfinfo{/Title   (\titel)
-              /Author   (\autor)
-             }
-\else
-     \usepackage[dvips]{graphicx}
-     \usepackage[dvips,colorlinks=false]{hyperref}
-     \hypersetup{pdftitle    = {\titel},
-                 pdfauthor   = {\autor},
-                }
-\fi
-% Ende der Unterscheidung
+\DeclareGraphicsExtensions{.jpg,.png}
+\hypersetup{
+    pdftitle    = {\titel},
+    pdfauthor   = {\autor},
+}
 
 % literaturverzeichniss hinzufügen
 \addbibresource{Inhalt/literaturverzeichnis.bib}
