@@ -227,7 +227,7 @@ ilines				% Trennlinie linksbündig ausrichten
 % 	um ein automatisch generiertes Literaturverzeichnis zu erstelen
 % 	https://golatex.de/wichtige-hinweise-erstellung-von-literaturverzeichnissen-t11964.html
 \usepackage[
-	style=alphabetic,
+	style=alphabetic, % numeric, alphabetic
 	backend=biber
 	]{biblatex}
 \usepackage{csquotes}
@@ -251,6 +251,7 @@ ilines				% Trennlinie linksbündig ausrichten
 % PDF-Optionen
 % ===========================================================================
 % inhaltsverzeichnis konfigurieren
+\usepackage{varioref}
 \usepackage[
 	bookmarks,
 	bookmarksopen=true,
@@ -310,8 +311,8 @@ ilines				% Trennlinie linksbündig ausrichten
 \newcommand{\acf}[1]{\acrfull{#1}} % Prints both, the acronym and its definition. In the example the output of \acrfull{lcm} is Least Common Multiple (LCM).
 
 % Zum besseren referenzieren auf----------------- ---------------------------
-\usepackage[german]{varioref}
-\def\myref#1{\autoref{#1}\vpageref[]{#1}}
+%\usepackage[german]{varioref}
+\def\myref#1{\vref{#1}}
 
 
 % Zum fortlaufenden Durchnummerieren der Fußnoten ---------------------------
