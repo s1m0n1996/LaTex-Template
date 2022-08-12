@@ -23,9 +23,10 @@ Für die deutlich bessere Einbindung und Syntaxhervorhebung von Quellcode wurde 
 Um das Paket verwenden zu können, wird Python 2.7.X und das python Paket pygments benötigt.
 
 [Anleitung Stackoverflow](https://tex.stackexchange.com/questions/108661/how-to-use-minted-under-miktex-and-windows-7)
-1. Python 2.7.X [herunterladen](https://www.python.org/downloads/) und installieren. Beim installieren ist darauf zu achten dass Python auch in den Umgebungsvariablen angepasst wird.
+1. Python 3 [herunterladen](https://www.python.org/downloads/) und installieren. Beim installieren ist darauf zu achten dass Python auch in den Umgebungsvariablen angepasst wird.
 2. Pythons Paketverwaltung pip installieren
-3. Das Paket pygments installieren
+3. Das Paket pygments unter sudo installieren
     * ```pip install pygments```
+    * Die korrekte installation kann mit ``pygmentize -V`` überprüft werden
 4. Den Zugriff auf externe Programme für den Compiler ````-shell-escape```` erlauben.
     * in Den Einstellungen von TexStudio unter dem Menüpunkt **Befehle** den Befehlt für PdfLaTeX mit ````-shell-escape```` ergänzen. Aus dem Standard Befehl ```pdflatex.exe -synctex=1 -interaction=nonstopmode %.tex``` wird dann ```pdflatex.exe -shell-escape -synctex=1 -interaction=nonstopmode %.tex```
